@@ -36,128 +36,52 @@ public class Main {
 
     public static String[][] clients(){
         Scanner input = new Scanner(System.in);
-        String[][] clients= {{"47174402J"},{"Lluís"},
-                {"74174402S"},{"Antoniu"},
-                {"74574402Z"},{"Maria"},
-                {"0"},{"0"},
-                {"0"},{"0"},
-                {"0"},{"0"},
-                {"0"},{"0"},
-                {"0"},{"0"},
-                {"0"},{"0"},
-                {"0"},{"0"},
-                {"0"},{"0"},
-                {"0"},{"0"},
-                {"0"},{"0"},
-                {"0"},{"0"},
-                {"0"},{"0"},
-                {"0"},{"0"},
-                {"0"},{"0"},
-                {"0"},{"0"},
-                {"0"},{"0"},
-                {"0"},{"0"},
-                {"0"},{"0"},
-                {"0"},{"0"},
-                {"0"},{"0"},
-                {"0"},{"0"},
-                {"0"},{"0"},
-                {"0"},{"0"},
-                {"0"},{"0"},
-                {"0"},{"0"},
-                {"0"},{"0"},
-                {"0"},{"0"},
-                {"0"},{"0"},
-                {"0"},{"0"},
-                {"0"},{"0"},
-                {"0"},{"0"},
-                {"0"},{"0"},
-                {"0"},{"0"},
-                {"0"},{"0"},
-                {"0"},{"0"},
-                {"0"},{"0"},
-                {"0"},{"0"},
-                {"0"},{"0"},
-                {"0"},{"0"},
-                {"0"},{"0"},
-                {"0"},{"0"},
-                {"0"},{"0"},
-                {"0"},{"0"},
-                {"0"},{"0"},
-                {"0"},{"0"},
-                {"0"},{"0"},
-                {"0"},{"0"},
-                {"0"},{"0"},
-                {"0"},{"0"},
-                {"0"},{"0"},
-                {"0"},{"0"},
-                {"0"},{"0"},
-                {"0"},{"0"},
-                {"0"},{"0"},
-                {"0"},{"0"},
-                {"0"},{"0"},
-                {"0"},{"0"},
-                {"0"},{"0"},
-                {"0"},{"0"},
-                {"0"},{"0"},
-                {"0"},{"0"},
-                {"0"},{"0"},
-                {"0"},{"0"},
-                {"0"},{"0"},
-                {"0"},{"0"},
-                {"0"},{"0"},
-                {"0"},{"0"},
-                {"0"},{"0"},
-                {"0"},{"0"},
-                {"0"},{"0"},
-                {"0"},{"0"},
-                {"0"},{"0"},
-                {"0"},{"0"},
-                {"0"},{"0"},
-                {"0"},{"0"},
-                {"0"},{"0"},
-                {"0"},{"0"},
-                {"0"},{"0"},
-                {"0"},{"0"},
-                {"0"},{"0"},
-                {"0"},{"0"},
-                {"0"},{"0"},
-                {"0"},{"0"},
-                {"0"},{"0"},
-                {"0"},{"0"},
-                {"0"},{"0"},
-                {"0"},{"0"},
-                {"0"},{"0"},
-                {"0"},{"0"},
-                {"0"},{"0"},
-                {"0"},{"0"},
-                {"0"},{"0"},
-                {"0"},{"0"},
-                {"0"},{"0"},
-                {"0"},{"0"},
-                {"0"},{"0"},
-                {"0"},{"0"},
-                {"0"},{"0"}};
-        int disp=0;
+        String[][] clients = new String[100][2];
+        int numClientes=0;
+        boolean correcto=false;
 
-        for(int i=0; i<100; i++){
-            for(int j=0; j<2; j++){
-                System.out.print(clients[i][j]);
-                if (j!=1){
-                    System.out.println(", ");
+        do {
+            System.out.println("Indique el DNI a añadir");
+            clients[numClientes][0] = input.next();
+            for (int i=0; i<100; i++){
+                if (clients[i][0]==clients[numClientes][0]){
+                    System.out.println("Aquest DNI ja està afegit");
+                } else if (i==99) {
+                    System.out.println("Dni añadido correctamente");
+                    correcto=true;
                 }
             }
-            System.out.print("\n");
-        }
+        }while(!correcto);
+        correcto=false;
+        do {
+            System.out.println("Indique el nombre del correspondiente DNI");
+            clients[numClientes][1] = input.next();
+            if (clients[numClientes][1]== "NULL"){
+                System.out.println("El nom no pot estar buit");
+            } else{
+                System.out.println("Tot correcte");
+                numClientes++;
+                correcto=true;
+            }
 
+        }while(!correcto);
         return clients;
     }
 
     public static void main(String[] args) {
         int menuItem = Menu();
+        String[][] clients=new String[100][2];
         System.out.println(menuItem);
 
         switch (menuItem){
-            case 1: clients();
+            case 1:  clients=clients();
+
+                for (int i=0; i<100; i++){
+                    for (int j=0; j<100; j++){
+                        System.out.println(clients[i][j]+"   ");
+                    }
+                    System.out.print("\n");
+                }
                 break;
             case 2:
             case 3:
