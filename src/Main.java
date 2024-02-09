@@ -7,7 +7,7 @@ public class Main {
         - Donar de alta nous clients Roger
         - Donar de alta nous mecànics
         - Introduir vehicle
-        - Ftitxa de reparació
+        - Fitxa de reparació
         - Poder modificar reparacións
      */
 
@@ -37,13 +37,14 @@ public class Main {
     public static String[][] clients() {
         Scanner input = new Scanner(System.in);
         String[][] clients = new String[100][2];
-        int numClientes = 0;
+        int numClientes=0;
         boolean correcto = false;
         String regex = "\\d{8}[A-z]";
 
         do {
             System.out.println("Indique el DNI a añadir:");
             String DNI = input.next();
+
             for (int i = 0; i < 100; i++) {
                 if (clients[i][0] == DNI) {
                     System.out.println("Aquest DNI ja està afegit");
@@ -51,6 +52,7 @@ public class Main {
                     System.out.println("Dni añadido correctamente");
                     clients[numClientes][0] = DNI;
                     correcto = true;
+
                 } else if (i == 99) {
                     System.out.println("El valor no es correcto");
                     break;
@@ -65,18 +67,27 @@ public class Main {
                 System.out.println("El nom no pot estar buit");
             } else {
                 System.out.println("Tot correcte");
-                numClientes++;
+
                 correcto = true;
             }
 
         } while (!correcto);
+        numClientes++;
     return clients;
+    }
 
+    public static String[][] reparacions(String[][] ArrayVehicles, String[][] numeros){
+        String[][] reparacio=new String[100][2];
+
+
+
+        return reparacio;
     }
 
     public static void main(String[] args) {
         int menuItem = Menu();
         String[][] clients = new String[100][2];
+        String[][] reparacio = new String[100][2];
 
         do {
             menuItem = Menu();
@@ -95,6 +106,8 @@ public class Main {
                 case 2:
                 case 3:
                 case 4:
+                    reparacio=reparacions();
+
                 case 5:
                 default:
                     break;
