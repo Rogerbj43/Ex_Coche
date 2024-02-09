@@ -66,10 +66,12 @@ public class Main {
             for (int i=0; i<100; i++) {
                 if (nom == "NULL") {
                     System.out.println("El nom no pot estar buit");
+                    break;
                 } else if (clients[i][1]==null){
                     System.out.println("Tot correcte");
                     clients[i][1]=nom;
                     correcto = true;
+                    break;
                 }
             }
 
@@ -78,8 +80,50 @@ public class Main {
     return clients;
     }
 
-    public static String[][] reparacions(String[][] ArrayVehicles, String[][] numeros){
+    public static String[][] reparacions(String[][] arrayVehicles, String[][] mecanic){
         String[][] reparacio=new String[100][2];
+        Scanner input=new Scanner(System.in);
+
+//matricula dni nom
+
+
+        for (int i=0; i<100; i++){
+            for (int j=0; j<100; j++){
+                System.out.println(reparacio[i][j]+"     ");
+            }
+            System.out.print("\n");
+        }
+
+        System.out.println("Introdueix la matrícula a acutalitzar: ");
+        String matricula= input.next();
+        for (int i=0; i<100; i++){
+            if (arrayVehicles[i][0]==matricula){
+                if (arrayVehicles[i][2]=="Oberta"){
+                    for (int x=0; x<100; x++){
+                        if (mecanic[x][2]=="lliure"||mecanic[x][2]=="Lliure"){
+                            System.out.println("El mecanic "+mecanic[x][0]+" s'encarregarà de la reparació");
+                            reparacio[i][1]=mecanic[x][0];
+                            reparacio[i][2]="En curs";
+                            mecanic[x][2]="Ocupat";
+                        } else if (x==99) {
+                            System.out.println("Cap mecànic disponible ");
+                        }
+                }
+            } else if (arrayVehicles[i][0]==null){
+                reparacio[i][0]=matricula;
+                for (int x=0; x<100; x++){
+                    if (mecanic[x][2]=="lliure"||mecanic[x][2]=="Lliure"){
+                        System.out.println("El mecanic "+mecanic[x][0]+" s'encarregarà de la reparació");
+                        reparacio[i][1]=mecanic[x][0];
+                        reparacio[i][2]="En curs";
+                        mecanic[x][2]="Ocupat";
+                    } else if (x==99) {
+                        System.out.println("Ara mateix no hi ha cap mecànic disponible ");
+                        reparacio[i][2]="Oberta";
+                    }
+                }
+            }
+        }
 
 
 
@@ -89,7 +133,7 @@ public class Main {
     public static void main(String[] args) {
         int menuItem;
         String[][] clients = new String[100][2];
-        String[][] reparacio = new String[100][2];
+        String[][] reparacio = new String[100][3];
 
         do {
             menuItem = Menu();
