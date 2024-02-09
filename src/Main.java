@@ -33,7 +33,7 @@ public class Main {
         return menuItem;
     }
 
-    public static void nousVehicles(){
+    public static void nousVehicles() {
         Scanner input = new Scanner(System.in);
 
         boolean correcte = false;
@@ -60,11 +60,11 @@ public class Main {
 
             boolean matriculaCorrecte = matricula.matches("[0-9]{4}+[A-Z]{3}");
 
-            if(matriculaCorrecte){
+            if (matriculaCorrecte) {
                 correcte = true;
                 arrayVehicles[emptyRow][0] = matricula;
 
-            } else{
+            } else {
                 System.out.println("ERROR, torna a introduïr");
             }
         } while (!correcte);
@@ -78,10 +78,10 @@ public class Main {
             dni = input.nextLine();
             boolean dniCorrecte = dni.matches("[0-9]{8}+[A-Z]");
 
-            if(dniCorrecte){
+            if (dniCorrecte) {
                 correcte = true;
                 arrayVehicles[emptyRow][1] = dni;
-            } else{
+            } else {
                 System.out.println("ERROR, torna a introduïr");
             }
         } while (!correcte);
@@ -98,11 +98,11 @@ public class Main {
                 System.out.println("Vehicle " + (i + 1) + ": Matrícula: " + arrayVehicles[i][0] + ", DNI: " + arrayVehicles[i][1] + ", Nom: " + arrayVehicles[i][2]);
             }
         }
-
+    }
         /*System.out.println(arrayVehicles[0][0]);
         System.out.println(arrayVehicles[1][0]);*/
 
-    }
+
     public static void main(String[] args) {
         int menuItem;
         String[][] clients = new String[100][2];
