@@ -11,6 +11,8 @@ public class Main {
         - Poder modificar reparacións
      */
 
+    public static String[][] reparacio = new String[100][3];
+    public static String[][] clients = new String[100][2];
     public static int Menu() {
         Scanner input = new Scanner(System.in);
 
@@ -36,7 +38,7 @@ public class Main {
 
     public static String[][] clients() {
         Scanner input = new Scanner(System.in);
-        String[][] clients = new String[100][2];
+
         boolean correcto = false;
         String regex = "\\d{8}[A-z]";
 
@@ -81,7 +83,7 @@ public class Main {
     }
 
     public static String[][] reparacions(String[][] arrayVehicles, String[][] mecanic) {
-        String[][] reparacio = new String[100][2];
+
         Scanner input = new Scanner(System.in);
 
 //matricula dni nom
@@ -133,19 +135,26 @@ public class Main {
 
     public static void main(String[]args) {
         int menuItem;
-        String[][] clients = new String[100][2];
-        String[][] reparacio = new String[100][3];
+
 
         do {
             menuItem = Menu();
 
             switch (menuItem) {
                 case 1:
-                    clients = clients();
+                    clients();
+
 
                     for (int i = 0; i < 100; i++) {
                         for (int j = 0; j < 2; j++) {
-                            System.out.print(clients[i][j] + "   ");
+                            if (clients[i][j]==null){
+                                    break;
+                            }else {
+                                System.out.print(clients[i][j] + "   ");
+                            }
+                        }
+                        if (clients[i][0]==null) {
+                            break;
                         }
                         System.out.print("\n");
                     }
@@ -153,7 +162,7 @@ public class Main {
                 case 2:
                 case 3:
                 case 4:
-                    reparacio=reparacions();
+
                 case 5:
                 default:
                     break;
