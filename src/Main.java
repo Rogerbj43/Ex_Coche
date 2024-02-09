@@ -13,6 +13,8 @@ public class Main {
 
     public static String[][] reparacio = new String[100][3];
     public static String[][] clients = new String[100][2];
+    public static String[][]  arrayVehicles= new String[100][3];
+    public static String[][] mecanic= new String[100][3];
     public static int Menu() {
         Scanner input = new Scanner(System.in);
 
@@ -82,7 +84,7 @@ public class Main {
     return clients;
     }
 
-    public static String[][] reparacions(String[][] arrayVehicles, String[][] mecanic) {
+    public static String[][] reparacions() {
 
         Scanner input = new Scanner(System.in);
 
@@ -162,7 +164,7 @@ public class Main {
                 case 2:
                 case 3:
                 case 4:
-
+                    reparacions();
                 case 5:
                 default:
                     break;
