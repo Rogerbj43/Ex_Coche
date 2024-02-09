@@ -11,11 +11,11 @@ public class Main {
         - Poder modificar reparacións
      */
 
-    public static int Menu(){
+    public static int Menu() {
         Scanner input = new Scanner(System.in);
 
         int menuItem = 0;
-        do {
+
             System.out.println("TALLER DE REPARACIÓ DE VEHICLES");
             System.out.println("[1] Donar d’alta nou client");
             System.out.println("[2] Donar d’alta nou mecànic");
@@ -24,71 +24,82 @@ public class Main {
             System.out.println("[5] Sortir");
             System.out.println("Sel·lecciona una opció: ");
 
-            if (input.hasNextInt()){
+            if (input.hasNextInt()) {
                 menuItem = input.nextInt();
 
             }
 
-        } while(menuItem!=5);
+
 
         return menuItem;
     }
 
-    public static String[][] clients(){
+    public static String[][] clients() {
         Scanner input = new Scanner(System.in);
         String[][] clients = new String[100][2];
-        int numClientes=0;
-        boolean correcto=false;
+        int numClientes = 0;
+        boolean correcto = false;
+        String regex = "\\d{8}[A-z]";
 
         do {
-            System.out.println("Indique el DNI a añadir");
-            clients[numClientes][0] = input.next();
-            for (int i=0; i<100; i++){
-                if (clients[i][0]==clients[numClientes][0]){
+            System.out.println("Indique el DNI a añadir:");
+            String DNI = input.next();
+            for (int i = 0; i < 100; i++) {
+                if (clients[i][0] == DNI) {
                     System.out.println("Aquest DNI ja està afegit");
-                } else if (i==99) {
+                } else if (i == 99 && DNI.matches(regex)) {
                     System.out.println("Dni añadido correctamente");
-                    correcto=true;
+                    clients[numClientes][0] = DNI;
+                    correcto = true;
+                } else if (i == 99) {
+                    System.out.println("El valor no es correcto");
+                    break;
                 }
             }
-        }while(!correcto);
-        correcto=false;
+        } while (!correcto);
+        correcto = false;
         do {
-            System.out.println("Indique el nombre del correspondiente DNI");
+            System.out.println("Indique el nombre del correspondiente DNI: ");
             clients[numClientes][1] = input.next();
-            if (clients[numClientes][1]== "NULL"){
+            if (clients[numClientes][1] == "NULL") {
                 System.out.println("El nom no pot estar buit");
-            } else{
+            } else {
                 System.out.println("Tot correcte");
                 numClientes++;
-                correcto=true;
+                correcto = true;
             }
 
-        }while(!correcto);
-        return clients;
+        } while (!correcto);
+    return clients;
+
     }
 
     public static void main(String[] args) {
         int menuItem = Menu();
-        String[][] clients=new String[100][2];
-        System.out.println(menuItem);
+        String[][] clients = new String[100][2];
 
-        switch (menuItem){
-            case 1:  clients=clients();
+        do {
+            menuItem = Menu();
 
-                for (int i=0; i<100; i++){
-                    for (int j=0; j<100; j++){
-                        System.out.println(clients[i][j]+"   ");
+            switch (menuItem) {
+                case 1:
+                    clients = clients();
+
+                    for (int i = 0; i < 100; i++) {
+                        for (int j = 0; j < 2; j++) {
+                            System.out.print(clients[i][j] + "   ");
+                        }
+                        System.out.print("\n");
                     }
-                    System.out.print("\n");
-                }
-                break;
-            case 2:
-            case 3:
-            case 4:
-            case 5:
-            default: break;
-        }
+                    break;
+                case 2:
+                case 3:
+                case 4:
+                case 5:
+                default:
+                    break;
+            }
 
+        }while(menuItem!=5);
     }
 }
