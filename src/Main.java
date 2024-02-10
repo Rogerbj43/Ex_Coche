@@ -234,29 +234,34 @@ public class Main {
         String matricula = input.next();
         for (int i = 0; i < 100; i++) {
             if (reparacio[i][0] == matricula) {
-                if (reparacio[i][2] == "Oberta") {
+                if (Objects.equals(reparacio[i][2], "Oberta")) {
                     for (int x = 0; x < 100; x++) {
-                        if (mecanics[x][2] == "lliure" || mecanics[x][2] == "Lliure") {
+                        if (Objects.equals(mecanics[x][2], "lliure") || Objects.equals(mecanics[x][2], "Lliure")) {
                             System.out.println("El mecanic " + mecanics[x][0] + " s'encarregarà de la reparació");
                             reparacio[i][1] = mecanics[x][0];
                             reparacio[i][2] = "En curs";
                             mecanics[x][2] = "Ocupat";
+                            break;
                         } else if (x == 99) {
                             System.out.println("Cap mecànic disponible ");
+                            reparacio[i][2]="Oberta";
+                            break;
                         }
                     }
-                } else if (reparacio[i][0] == null) {
-                    reparacio[i][0] = matricula;
-                    for (int x = 0; x < 100; x++) {
-                        if (mecanics[x][2] == "lliure" || mecanics[x][2] == "Lliure") {
-                            System.out.println("El mecanic " + mecanics[x][0] + " s'encarregarà de la reparació");
-                            reparacio[i][1] = mecanics[x][0];
-                            reparacio[i][2] = "En curs";
-                            mecanics[x][2] = "Ocupat";
-                        } else if (x == 99) {
-                            System.out.println("Ara mateix no hi ha cap mecànic disponible ");
-                            reparacio[i][2] = "Oberta";
-                        }
+                }
+            } else if (reparacio[i][0] == null) {
+                reparacio[i][0] = matricula;
+                for (int x = 0; x < 100; x++) {
+                    if (mecanics[x][2] == "lliure" || mecanics[x][2] == "Lliure") {
+                        System.out.println("El mecanic " + mecanics[x][0] + " s'encarregarà de la reparació");
+                        reparacio[i][1] = mecanics[x][0];
+                        reparacio[i][2] = "En curs";
+                        mecanics[x][2] = "Ocupat";
+                        break;
+                    } else if (x == 99) {
+                        System.out.println("Ara mateix no hi ha cap mecànic disponible ");
+                        reparacio[i][2] = "Oberta";
+                        break;
                     }
                 }
             }
